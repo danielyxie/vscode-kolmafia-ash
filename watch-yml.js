@@ -3,7 +3,7 @@ const yaml = require('js-yaml');
 
 function recompile() {
     const obj = yaml.safeLoad(fs.readFileSync('syntaxes/ash.yml'));
-    fs.writeFileSync('out/ash.json', JSON.stringify(obj));
+    fs.writeFileSync('dist/ash.json', JSON.stringify(obj));
 }
 
 fs.watchFile('syntaxes/ash.yml', () => {

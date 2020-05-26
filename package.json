@@ -34,7 +34,7 @@
 		"kolmafia",
 		"mafia"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"languages": [
 			{
@@ -53,12 +53,12 @@
 			{
 				"language": "ash",
 				"scopeName": "source.ash",
-				"path": "./out/ash.json"
+				"path": "./dist/ash.json"
 			}
 		]
 	},
 	"scripts": {
-		"generate-syntax": "js-yaml syntaxes/ash.yml > out/ash.json",
+		"generate-syntax": "js-yaml syntaxes/ash.yml > dist/ash.json",
 		"generate-parser": "antlr4ts -visitor -o src/ashparser src/ashparser/AshLexer.g4 src/ashparser/AshParser.g4",
 		"vscode:prepublish": "npm run compile",
 		"compile": "npm run generate-syntax && npm run generate-parser && webpack --mode production",
