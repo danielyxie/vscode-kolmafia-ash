@@ -41,15 +41,16 @@ name: KoLmafia ASH
 fileTypes:
   - ash
 patterns:
-  - begin: (import)\s*(<|"|')
+  - begin: ^\s*\b(import)\b
     beginCaptures:
-      '1': keyword.control.import.include
-      '2': punctuation.separator.continuation.ash
-    end: (>|"|')\s*(;)?
+      '1': keyword.control.java
+    end: '(;)?\s*$'
     endCaptures:
-      '1': punctuation.separator.continuation.ash
-      '2': punctuation.terminator.ash
-    name: string.quoted.double.include.ash
+      '1': punctuation.terminator.java
+    name: keyword.control.java  # Shouldn't need this line, but we do.
+    patterns:
+      - include: '#string-import'
+      - include: '#strings'
   - include: '#comments-javadoc'
   - include: '#code'
   - include: '#module'
@@ -367,7 +368,7 @@ repository:
       - match: '\?|:'
         name: keyword.control.ternary.java
       - match: >-
-          \b(return|break|case|continue|default|do|while|for|switch|if|else|repeat|until|foreach|exit|sort|by|in)\b
+          \b(import|return|break|case|continue|default|do|while|for|switch|if|else|repeat|until|foreach|exit|sort|by|in)\b
         name: keyword.control.java
       - match: \b(instanceof)\b
         name: keyword.operator.instanceof.java
@@ -695,6 +696,21 @@ repository:
     match: >-
       \b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|volatile|default|strictfp)\b
     name: storage.modifier.java
+  string-import:
+    begin: '<'
+    beginCaptures:
+      '0':
+        name: punctuation.definition.string.begin.java
+    end: '>'
+    endCaptures:
+      '0':
+        name: punctuation.definition.string.end.java
+    name: string.quoted.double.import.java
+    patterns:
+      - match: \\.
+        name: constant.character.escape.java
+      - match: '&[a-z]+;'
+        name: constant.character.escape.ash
   strings:
     patterns:
       - begin: '"'
