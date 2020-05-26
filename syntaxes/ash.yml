@@ -707,7 +707,7 @@ repository:
         name: punctuation.definition.string.end.java
     name: string.quoted.double.import.java
     patterns:
-      - match: \\.
+      - match: \.
         name: constant.character.escape.java
       - match: '&[a-z]+;'
         name: constant.character.escape.ash
@@ -739,6 +739,30 @@ repository:
         patterns:
           - match: \\.
             name: constant.character.escape.java
+          - match: '&[a-z]+;'
+            name: constant.character.escape.ash
+      - begin: '`'
+        beginCaptures:
+          '0':
+            name: punctuation.definition.string.begin.java
+        end: '`'
+        endCaptures:
+          '0':
+            name: punctuation.definition.string.end.java
+        name: string.quoted.single.template.ash
+        patterns:
+          - match: \\.
+            name: constant.character.escape.java
+          - begin: \{
+            beginCaptures:
+              '0':
+                name: constant.character.escape.java
+            end: \}
+            endCaptures:
+              '0':
+                name: constant.character.escape.java
+            patterns:
+              - include: '#code'
           - match: '&[a-z]+;'
             name: constant.character.escape.ash
   throws:
