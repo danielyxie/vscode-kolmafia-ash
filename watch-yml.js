@@ -1,16 +1,22 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+function recompile() {
+    const obj = yaml.safeLoad(fs.readFileSync('syntaxes/ash.yml'));
+    fs.writeFileSync('out/ash.json', JSON.stringify(obj));
+}
+
 fs.watchFile('syntaxes/ash.yml', () => {
     console.log('Recompiling ash.json...');
     try {
-        const obj = yaml.safeLoad(fs.readFileSync('syntaxes/ash.yml'));
-        fs.writeFileSync('syntaxes/ash.json', JSON.stringify(obj));
+        recompile();
     } catch (err) {
         console.error(err);
     }
     console.log('Done recompiling.');
 });
+
+recompile();
 
 const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
 const forever = async () => {

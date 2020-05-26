@@ -53,7 +53,7 @@
 			{
 				"language": "ash",
 				"scopeName": "source.ash",
-				"path": "./syntaxes/ash.json"
+				"path": "./out/ash.json"
 			}
 		]
 	},
