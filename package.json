@@ -58,7 +58,7 @@
 		]
 	},
 	"scripts": {
-		"generate-syntax": "js-yaml syntaxes/ash.yml > syntaxes/ash.json",
+		"generate-syntax": "js-yaml syntaxes/ash.yml > out/ash.json",
 		"generate-parser": "antlr4ts -visitor -o src/ashparser src/ashparser/AshLexer.g4 src/ashparser/AshParser.g4",
 		"vscode:prepublish": "npm run compile",
 		"compile": "npm run generate-syntax && npm run generate-parser && webpack --mode production",
