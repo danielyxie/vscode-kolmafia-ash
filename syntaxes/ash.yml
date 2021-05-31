@@ -43,11 +43,12 @@ fileTypes:
 patterns:
   - begin: ^\s*\b(import)\b
     beginCaptures:
-      '1': keyword.control.java
+      '1':
+        name: keyword.control.java
     end: '(;)?\s*$'
     endCaptures:
-      '1': punctuation.terminator.java
-    name: keyword.control.java  # Shouldn't need this line, but we do.
+      '1':
+        name: punctuation.terminator.java
     patterns:
       - include: '#string-import'
       - include: '#strings'
